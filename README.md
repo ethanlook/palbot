@@ -15,7 +15,7 @@ Raspberry Pi 4 | 1 | ~$100
 
 Follow Viam's [Raspberry Pi Setup Guide](https://docs.viam.com/installation/prepare/rpi-setup/). Be sure to [enable I2C](https://docs.viam.com/installation/#install-viam-server) for using the time of flight sensor.
 
-[Install the `viam-server`](https://docs.viam.com/installation/#install-viam-server).
+[Install the `viam-server`](https://docs.viam.com/installation/#install-viam-server). [Install the Viam Python SDK](https://python.viam.dev/#installation) (use `pip3`).
 
 [Install CircuitPython](https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi) for using the time of flight sensor.
 
@@ -36,6 +36,16 @@ Add a new process in the Viam app under `CONFIG > PROCESSES`:
 - Executable: `sudo`
 - Argumentss: `-u`, `<user name>`, `python3`, `vl53l0x_sensor.py`
 - Working directory: `/home/<user name>`
+
+Add the sensor server as a remote in the Viam app under `CONFIG > REMOTES`:
+
+```
+{
+  "prefix": true,
+  "address": "localhost:8081",
+  "name": "vl53l0x"
+}
+```
 
 Verify the sensor is working in the Viam app under `CONTROL > Sensors`.
 
